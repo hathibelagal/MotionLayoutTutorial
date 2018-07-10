@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/starting_set">
+        <Constraint android:id="@+id/actor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/ending_set">
+        <Constraint android:id="@+id/actor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            />
+    </ConstraintSet>
+
+    <Transition
+        android:id="@+id/my_transition"
+        app:constraintSetStart="@+id/starting_set"
+        app:constraintSetEnd="@+id/ending_set"
+        app:duration="2000">
+        <KeyFrameSet android:id="@+id/my_keys">
+            <KeyPosition
+                app:target="@+id/actor"
+                app:framePosition="30"
+                app:type="deltaRelative"
+                app:percentX="0.85"
+                />
+            <KeyPosition
+                app:target="@+id/actor"
+                app:framePosition="60"
+                app:type="deltaRelative"
+                app:percentX="1"
+                />
+            <KeyPosition
+                app:target="@+id/actor"
+                app:framePosition="80"
+                app:type="deltaRelative"
+                app:percentX="0.5"
+                />
+            <KeyCycle
+                app:target="@+id/actor"
+                app:framePosition="30"
+                android:rotation="50"
+                app:waveShape="sin"
+                app:wavePeriod="1"
+                />
+        </KeyFrameSet>
+        <OnSwipe
+            app:touchAnchorId="@+id/actor"
+            app:touchAnchorSide="top"
+            app:dragDirection="dragUp" />
+
+        <OnClick
+            app:target="@+id/actor"
+            app:mode="transitionToEnd"/>
+
+    </Transition>
+
+</MotionScene>
